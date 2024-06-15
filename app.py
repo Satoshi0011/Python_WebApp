@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, request, render_template
 
 app = Flask(__name__)
 
@@ -21,3 +21,18 @@ def test_request(test_request):
 @app.route("/exercise_request/<test_request>")
 def exercise_request(test_request):
     return f"exercise_request:{test_request}"
+
+
+# @app.route("/show_html")
+# def show_html():
+#     return render_template("test_html.html")
+
+
+@app.route("/show_html")
+def show_html():
+    return render_template("exercise.html")
+
+
+@app.route("/exercise")
+def exercise():
+    return render_template("answer.html", name=request.args.get("my_name"))
